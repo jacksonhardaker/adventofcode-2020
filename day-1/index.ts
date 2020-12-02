@@ -4,7 +4,7 @@ import { calculateFromTwo, calculateFromThree } from './report-repair.ts'
 const input = readSplitAndParseAsNumber('./day-1/input.txt')
 
 const part1Result = calculateFromTwo(input)
-console.log(`Part 1 Result - ${part1Result}`) // 1010884
+console.log(`🌟 Part 1 Result - ${part1Result}`) // 1010884
 
 const part2Result = calculateFromThree(input)
-console.log(`Part 1 Result - ${part2Result}`) // 253928438
+console.log(`🌟 Part 1 Result - ${part2Result}`) // 253928438
