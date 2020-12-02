@@ -14,7 +14,8 @@
   },
   "scripts": {
     "test": "jest",
-    "day1": "deno run --allow-read day-1/index.ts"
+    "day1": "deno run --allow-read day-1/index.ts",
+    "day2": "deno run --allow-read day-2/index.ts"
   },
   "dependencies": {
     "@babel/preset-typescript": "^7.12.7"
