@@ -4,7 +4,7 @@ import { validatePasswordByMinMax, validatePasswordByCharPosition } from "./pass
 const input = readAndSplit("./day-2/input.txt");
 
 const part1Result = validatePasswordByMinMax(input);
-console.log(`🌟 Part 1 Result - ${part1Result.length}`); // 582
+console.log(`🌟 Part 1 Result - ${part1Result.length}`);
 
 const part2Result = validatePasswordByCharPosition(input);
-console.log(`🌟 Part 2 Result - ${part2Result.length}`); // 729
+console.log(`🌟 Part 2 Result - ${part2Result.length}`);
