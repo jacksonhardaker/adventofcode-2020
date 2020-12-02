@@ -10,10 +10,12 @@ describe('Day 1 - Part 1', () => {
       675,
       1456,
     ])
-    
+
     expect(result).toEqual(514579)
   })
+})
 
+describe('Day 1 - Part 2', () => {
   test('example input returns 241861950', () => {
     const result = calculateFromThree([
       1721,
@@ -23,8 +25,7 @@ describe('Day 1 - Part 1', () => {
       675,
       1456,
     ])
-    
+
     expect(result).toEqual(241861950)
   })
-
 })
