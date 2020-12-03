@@ -1,4 +1,4 @@
-import { calculateFromTwo, calculateFromThree } from '../report-repair.ts'
+import { calculateFromTwo, calculateFromThree } from './report-repair.ts'
 
 describe('Day 1 - Part 1', () => {
   test('example input returns 514579', () => {

@@ -1,4 +1,4 @@
-import { validatePasswordByMinMax, validatePasswordByCharPosition } from '../password-philosophy.ts'
+import { validatePasswordByMinMax, validatePasswordByCharPosition } from './password-philosophy.ts'
 
 describe('Day 2 - Part 1', () => {
   test('example input returns 2 valid passwords', () => {
