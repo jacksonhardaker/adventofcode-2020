@@ -17,7 +17,8 @@
     "generate": "deno run --allow-write --allow-read template/generate.ts",
     "day1": "deno run --allow-read day-1/index.ts",
     "day2": "deno run --allow-read day-2/index.ts",
-    "day3": "deno run --allow-read day-3/index.ts"
+    "day3": "deno run --allow-read day-3/index.ts",
+    "day4": "deno run --allow-read day-4/index.ts"
   },
   "dependencies": {
     "@babel/preset-typescript": "^7.12.7"
