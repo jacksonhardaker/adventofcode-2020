@@ -14,5 +14,5 @@ const input = readSplitAndParse(
 const part1Result = part1(input);
 console.log(`🌟 Part 1 Result - ${part1Result.length}`);
 
-// const part2Result = part2(input);
-// console.log(`🌟 Part 2 Result - ${part2Result}`);
+const part2Result = part2(input);
+console.log(`🌟 Part 2 Result - ${part2Result.length}`);
