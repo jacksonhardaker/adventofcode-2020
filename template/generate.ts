@@ -5,8 +5,10 @@ if (!name) {
   throw new Error("Must supply an argument");
 }
 
+// Make directory
 Deno.mkdirSync(`${__dirname}../${name}`);
 
+// Duplicate template files
 for (const dirEntry of Deno.readDirSync(`${__dirname}/files`)) {
   const contents = Deno.readTextFileSync(`${__dirname}/files/${dirEntry.name}`);
 
@@ -15,5 +17,13 @@ for (const dirEntry of Deno.readDirSync(`${__dirname}/files`)) {
     contents,
   );
 }
+
+// Add package.json script
+Deno.readTextFile(`${__dirname}../package.json`).then(data => {
+  const pkg = JSON.parse(data);
+  pkg.scripts[name.replace(/-/g, '')] = `deno run --allow-read ${name}/index.ts`;
+  Deno.writeTextFileSync(`${__dirname}../package.json`, JSON.stringify(pkg, null, 2));
+})
+
 
 export {};
