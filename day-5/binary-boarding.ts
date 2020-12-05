@@ -80,7 +80,7 @@ export const calculateSeat = (input: string): Seat => {
   };
 };
 
-export const part1 = (input: Array<string>) => {
+export const part1 = (input: Array<string>): number => {
   return input.reduce((highest: number, code: string): number => {
     const id = calculateSeat(code).id;
 
@@ -88,4 +88,18 @@ export const part1 = (input: Array<string>) => {
   }, 0);
 };
 
-export const part2 = (input: Array<string>) => {};
+export const part2 = (input: Array<string>) => {
+  const maxSeatId = part1(input);
+  const seatIds = input.map((code: string) => calculateSeat(code).id);
+
+  let mySeat = 0;
+  seatIds.includes(mySeat - 1) && seatIds.includes(mySeat + 1) && !seatIds.includes(mySeat)
+  while(!(seatIds.includes(mySeat - 1) && seatIds.includes(mySeat + 1) && !seatIds.includes(mySeat))) {
+    mySeat++;
+    if (mySeat >= maxSeatId) {
+      break;
+    }
+  }
+
+  return mySeat;
+};
