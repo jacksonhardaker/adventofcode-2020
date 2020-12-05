@@ -5,11 +5,11 @@ const defaultOptions = {
 
 export const readAndSplit = (
   path: string,
-  delimiter: string | RegExp,
+  delimiter?: string | RegExp,
 ): Array<string> => {
 
   const result = Deno.readTextFileSync(path);
-  const dataArray = result.split(delimiter).filter((mass) => !!mass);
+  const dataArray = result.split(delimiter ? delimiter : defaultOptions.delimiter).filter((mass) => !!mass);
 
   return dataArray;
 };
