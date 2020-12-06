@@ -4,7 +4,7 @@ import { part1, part2 } from "./custom-customs.ts";
 const __dirname = new URL(".", import.meta.url).pathname;
 const input = readSplitAndParse<string[]>(`${__dirname}/input.txt`, {
   delimiter: "\n\n",
-  parser: (group) => group.split("\n"),
+  parser: (group) => group.split("\n").filter((g) => !!g),
 });
 
 const part1Result = part1(input);

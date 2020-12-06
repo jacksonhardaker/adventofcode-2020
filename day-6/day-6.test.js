@@ -19,7 +19,7 @@ a
 b`.split('\n\n').map((i) => i.split('\n'));
 
 describe('Day 2 - Part 1', () => {
-  test('example input has result of 11', () => {
+  test('example input has result of 3 + 3 + 3 + 1 + 1 = 11', () => {
     const result = part1(input)
 
     expect(result).toEqual(11)
@@ -27,10 +27,9 @@ describe('Day 2 - Part 1', () => {
 })
 
 describe('Day 2 - Part 2', () => {
-  test('example input has x result', () => {
-    const result = part2([
-    ])
+  test('example input has result of 3 + 0 + 1 + 1 + 1 = 6', () => {
+    const result = part2(input)
 
-    expect(result).toEqual(undefined)
+    expect(result).toEqual(6)
   })
 })
