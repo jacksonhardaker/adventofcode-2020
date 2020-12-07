@@ -20,7 +20,8 @@
     "day3": "deno run --allow-read day-3/index.ts",
     "day4": "deno run --allow-read day-4/index.ts",
     "day5": "deno run --allow-read day-5/index.ts",
-    "day6": "deno run --allow-read day-6/index.ts"
+    "day6": "deno run --allow-read day-6/index.ts",
+    "day7": "deno run --allow-read day-7/index.ts"
   },
   "dependencies": {
     "@babel/preset-typescript": "^7.12.7"
