@@ -5,7 +5,7 @@ const __dirname = new URL('.', import.meta.url).pathname;
 const input = readAndSplit(`${__dirname}/input.txt`);
 
 const part1Result = part1(input);
-console.log(`🌟 Part 1 Result - ${part1Result}`);
+console.log(`🌟 Part 1 Result - ${part1Result.accumulator}`);
 
 const part2Result = part2(input);
 console.log(`🌟 Part 2 Result - ${part2Result}`);
