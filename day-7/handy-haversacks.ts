@@ -1,19 +1,16 @@
 class Rule {
   type: string;
-  contains: { [key: string]: { rule: Rule; quantity: number } };
+  contains: [Rule, number][];
   containedBy: Rule[];
 
   constructor(type: string) {
     this.type = type;
-    this.contains = {};
+    this.contains = [];
     this.containedBy = [];
   }
 
   pushContains(rule: Rule, quantity: number) {
-    this.contains[rule.type] = {
-      rule,
-      quantity,
-    };
+    this.contains.push([rule, quantity]);
 
     rule.pushContainedBy(this);
   }
@@ -39,7 +36,9 @@ const constructRuleMap = (input: string[]) => {
 
   input.forEach((ruleString: string) => {
     const [outer, contains] = ruleString.split("contain");
-    const typeName = outer.trim().endsWith("s") ? outer.trim() : `${outer.trim()}s`;
+    const typeName = outer.trim().endsWith("s")
+      ? outer.trim()
+      : `${outer.trim()}s`;
     const rule = createRule(ruleMap, typeName);
     const containsStrings = contains.replace(/\.$/, "").split(",").map((s) =>
       s.trim()
@@ -51,7 +50,9 @@ const constructRuleMap = (input: string[]) => {
       }
 
       const [, quantity, type] = containRule.match(/^(\d+)\s(.+)$/) || [];
-      const subTypeName = type.trim().endsWith("s") ? type.trim() : `${type.trim()}s`;
+      const subTypeName = type.trim().endsWith("s")
+        ? type.trim()
+        : `${type.trim()}s`;
       const subRule = createRule(ruleMap, subTypeName);
 
       if (subRule) {
@@ -70,7 +71,7 @@ const getContainedBy = (rule: Rule): Rule[] => {
   }, []);
 
   const all = [...directParents, ...nested];
-  const unique: { [key: string]: Rule} = {};
+  const unique: { [key: string]: Rule } = {};
   all.forEach((rule) => {
     if (rule.type) {
       unique[rule.type] = rule;
@@ -78,6 +79,17 @@ const getContainedBy = (rule: Rule): Rule[] => {
   });
 
   return Object.values(unique);
+};
+
+const getNumberOfNestedBags = (rule: Rule): number => {
+  const total = rule.contains.reduce(
+    (total: number, [rule, quantity]: [Rule, number]): number => {
+      return total + quantity + (quantity * getNumberOfNestedBags(rule));
+    },
+    0,
+  );
+
+  return total;
 };
 
 export const part1 = (input: Array<string>) => {
@@ -92,4 +104,13 @@ export const part1 = (input: Array<string>) => {
   return allNested.length;
 };
 
-export const part2 = (input: Array<string>) => {};
+export const part2 = (input: Array<string>) => {
+  const rules = constructRuleMap(input);
+  const shinyGoldBagRule = rules.get("shiny gold bags");
+
+  if (!shinyGoldBagRule) {
+    throw new Error("Invalid bag type");
+  }
+
+  return getNumberOfNestedBags(shinyGoldBagRule);
+};
