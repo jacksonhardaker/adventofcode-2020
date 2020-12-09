@@ -43,10 +43,30 @@ describe('Day 2 - Part 1', () => {
 })
 
 describe('Day 2 - Part 2', () => {
-  test('example input has x result', () => {
+  test('example input has a result of 62', () => {
     const result = part2([
-    ])
+      35,
+      20,
+      15,
+      25,
+      47,
+      40,
+      62,
+      55,
+      65,
+      95,
+      102,
+      117,
+      150,
+      182,
+      127,
+      219,
+      299,
+      277,
+      309,
+      576,
+    ], 5)
 
-    expect(result).toEqual(undefined)
+    expect(result).toEqual(62)
   })
 })
