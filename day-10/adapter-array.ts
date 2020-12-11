@@ -48,80 +48,50 @@ export const part1 = (input: number[]) => {
   return jolts1 * jolts3;
 };
 
-class Node {
-  value: number;
-  tree: Tree;
-  children: Node[];
-  parent: Node | null;
+const compareArrays = (arr1: any[], arr2: any[]) => {
+  if (arr1.length !== arr2.length) {
+    return false;
+  }
 
-  constructor(value: number, tree: Tree, parent: Node | null) {
-    this.value = value;
-    this.children = [];
-    this.tree = tree;
-    this.parent = parent;
-
-    let hasChildren = false;
-    [1, 2, 3].forEach((iterator) => {
-      if (tree.validValues.includes(value + iterator)) {
-        this.pushChild(value + iterator);
-        hasChildren = true;
-      }
-    });
-
-    if (!hasChildren) {
-      tree.leaves.push(this);
+  for (let i = 0; i < arr1.length; i++) {
+    if (arr1[i] !== arr2[i]) {
+      return false;
     }
   }
 
-  pushChild(value: number) {
-    this.children.push(new Node(value, this.tree, this));
-  }
-}
-
-class Tree {
-  root: Node;
-  validValues: number[];
-  leaves: Node[];
-
-  constructor(validValues: number[]) {
-    this.validValues = validValues;
-    this.leaves = [];
-    this.root = new Node(0, this, null);
-  }
-}
-
-const failure1 = (input: number[]) => {
-  // This solution uses too much space for the puzzle input.
-  // Would have been nice if we needed to keep track of the makeup of
-  // each combination.
-  const tree = new Tree(input);
-  return tree.leaves.length;
-}
-const failure2 = (input: number[]) => {
-  let totalCombinations = 0;
-  const traverse = (
-    input: number[],
-    currentJoltage: number,
-  ) => {
-    let hasNextStep = false;
-
-    [1, 2, 3].forEach((iterator) => {
-      if (input.includes(currentJoltage + iterator)) {
-        traverse(input, currentJoltage + iterator);
-        hasNextStep = true;
-      }
-    });
-
-    if (!hasNextStep) {
-      totalCombinations++;
-    }
-  };
-
-  traverse(input, 0);
-  return totalCombinations;
-}
+  return true;
+};
 
 export const part2 = (input: number[]) => {
-  // return failure1(input);
-  // return failure2(input);
+
+  const parseChain = (chain: number[]) => {
+    const newChain: number[] = [];
+
+    chain.forEach((value) => {
+        let hasChildren = false;
+        [1, 2, 3].forEach((iterator: number) => {
+          if (input.includes(value + iterator)) {
+            newChain.push(value + iterator);
+            hasChildren = true;
+          }
+        });
+  
+        if (!hasChildren) {
+          newChain.push(value);
+        }
+    });
+
+    return newChain;
+  };
+
+  let chainEnd = [0];
+  let newChainEnd = parseChain(chainEnd);
+
+  while (!compareArrays(chainEnd, newChainEnd)) {
+    console.log(newChainEnd.length);
+    chainEnd = [...newChainEnd];
+    newChainEnd = parseChain(chainEnd);
+  }
+
+  return chainEnd.length;
 };
