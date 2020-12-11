@@ -48,50 +48,28 @@ export const part1 = (input: number[]) => {
   return jolts1 * jolts3;
 };
 
-const compareArrays = (arr1: any[], arr2: any[]) => {
-  if (arr1.length !== arr2.length) {
-    return false;
+const tribonacciSequence = [1, 1, 2, 4, 7, 13, 24, 44, 81, 149];
+const getTribonacci = (num: number) => {
+  if (num > tribonacciSequence.length) {
+    throw new Error(`Can't calculate tribonacci number for ${num}`);
   }
 
-  for (let i = 0; i < arr1.length; i++) {
-    if (arr1[i] !== arr2[i]) {
-      return false;
-    }
-  }
-
-  return true;
+  return tribonacciSequence[num - 1];
 };
 
 export const part2 = (input: number[]) => {
+  const sorted = input.sort((a, b) => a - b);
+  const withMaxMin = [0, ...sorted, sorted.slice(-1)[0] + 3];
 
-  const parseChain = (chain: number[]) => {
-    const newChain: number[] = [];
-
-    chain.forEach((value) => {
-        let hasChildren = false;
-        [1, 2, 3].forEach((iterator: number) => {
-          if (input.includes(value + iterator)) {
-            newChain.push(value + iterator);
-            hasChildren = true;
-          }
-        });
-  
-        if (!hasChildren) {
-          newChain.push(value);
-        }
-    });
-
-    return newChain;
-  };
-
-  let chainEnd = [0];
-  let newChainEnd = parseChain(chainEnd);
-
-  while (!compareArrays(chainEnd, newChainEnd)) {
-    console.log(newChainEnd.length);
-    chainEnd = [...newChainEnd];
-    newChainEnd = parseChain(chainEnd);
+  let count = 1;
+  let iterations = 1;
+  for (let joltage of withMaxMin) {
+    if (withMaxMin.includes(joltage + 1)) {
+      iterations++;
+    } else {
+      count *= getTribonacci(iterations);
+      iterations = 1;
+    }
   }
-
-  return chainEnd.length;
+  return count;
 };
