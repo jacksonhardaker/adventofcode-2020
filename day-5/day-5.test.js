@@ -29,7 +29,7 @@ describe('Day 2 - Part 1', () => {
   })
 })
 
-describe('Day 2 - Part 2', () => {
+describe.skip('Day 2 - Part 2', () => {
   test('example input has x result', () => {
     const result = part2([
     ])
