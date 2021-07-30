@@ -13,7 +13,7 @@
     "jest": "^26.6.3"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest .",
     "generate": "deno run --allow-write --allow-read template/generate.ts",
     "day1": "deno run --allow-read day-1/index.ts",
     "day2": "deno run --allow-read day-2/index.ts",
