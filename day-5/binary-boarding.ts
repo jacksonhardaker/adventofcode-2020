@@ -27,6 +27,8 @@ class TreeNode {
   }
 }
 
+console.log('changed');
+
 const rowTree = new TreeNode(0, 127, null);
 const seatTree = new TreeNode(0, 7, null);
 
